@@ -16,11 +16,7 @@ end
 %% Graficas
 figure(1)
 
-[c,dc,dyav,Padj] = polajust(kBT,all_spin,3); % Polinomio de ajuste de grado 3
-
 plot(kBT, all_spin, 'k o','markerfacecolor', 'k')
-hold on
-plot(kBT, Padj(kBT), 'b', 'linewidth', 2)
 grid on
 xlabel('k_BT (J)')
 ylabel('M')
