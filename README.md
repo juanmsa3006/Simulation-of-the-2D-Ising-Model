@@ -118,7 +118,7 @@ We can get two main conclusions from this result. The first is that the addition
 At the same time, we see that for low temperatures the lattices tend to allign with the magnetic fields, and it is only when high temperatures are reached (even higher than in the case with no magnetic fields) that the  behavior of the system shifts. This makes sense since the addition of magnetic fields could make certain states even more stable than they already were, which would imply that more energy and hence higher temperatures would be required to escape them.
 
 
-# Long Range Interactions
+# Long-Range Interactions
 Finally, we propose a variation to the Ising Model. As it has previously been discussed, the Ising Model Hamiltonian only considers close interactions between the spins of a lattice. We could, however, consider a Hamiltonian which
 took into account the interactions between all spins of the lattice, and where the strength of such an interaction would be inversely proportional to the distance between the two spins. In that case, we could write the Hamiltonian as
 
