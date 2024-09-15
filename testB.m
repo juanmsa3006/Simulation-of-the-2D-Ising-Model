@@ -9,16 +9,16 @@ H = [ones(5,5), -1*ones(5,5);
     -1*ones(5,5), ones(5,5)];
 
 
-[lattice_f,~,~, ~] = runIsingModel(lattice_mu,t,beta,zeros(10,10), false); % evolucion sin campo magnetico
-[lattice_f2,~,~,~] = runIsingModel(lattice_mu,t,beta,H, false); % evolucion con campo magnetico
-%% Graficas
+[lattice_f,~,~, ~] = runIsingModel(lattice_mu,t,beta,zeros(10,10), false); % evolution in the absence of H-field
+[lattice_f2,~,~,~] = runIsingModel(lattice_mu,t,beta,H, false); % evolution in the presence of H-field
+%% Plots
 
 figure(1)
 subplot(1, 2, 1)
 imagesc(lattice_f)
-title('Lattice Final con H = 0')
+title('Final lattice with H = 0')
 
 subplot(1,2,2)
 imagesc(lattice_f2)
-title('Lattice Final con H distinto de 0')
+title('Final lattice with H different from 0')
 
