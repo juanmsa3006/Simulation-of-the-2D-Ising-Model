@@ -1,14 +1,14 @@
 function [lattice_mu,avg_spin,tot_energy,eff] = runIsingModel(lattice_mu,t, c, h, graph)
 % [lattice_mu,avg_spin,tot_energy,eff] = runIsingModel(lattice_mu,t, c, h, graph)
-% lattice_mu : lattice incial                                                            [INPUT]
-% t          : numero de iteraciones realizadas                                          [INPUT]
-% c          : valor de la constante beta                                                [INPUT]
-% h          : matriz del mismo tamano que el lattice con los valores de H en cada punto [INPUT]
-% graph      : boolean, si es verdadero grafica los resultado                            [INPUT]
-% lattice_mu : lattice final                                                             [OUTPUT]
-% avg_spin   : vector con la magnetizacion del lattice en cada paso temporal             [OUTPUT]
-% tot_energy : vector con la energia total del lattice en cada paso temporal             [OUTPUT]
-% eff        : escalar, numero de alteraciones de espin sobre pasos temporales           [OUTPUT]
+% lattice_mu : initial lattice                                                                       [INPUT]
+% t          : number of iterations                                                                  [INPUT]
+% c          : value of the constant beta                                                            [INPUT]
+% h          : matrix with the same dimensions as the lattice and the H-field values at every point  [INPUT]
+% graph      : boolean, if true shows plot with results                                              [INPUT]
+% lattice_mu : final lattice                                                                         [OUTPUT]
+% avg_spin   : vector storing the magnetization of the lattice at each time step                     [OUTPUT]
+% tot_energy : vector storing the energy of the lattice at each time step                            [OUTPUT]
+% eff        : scalar, number of spin flips per time step                                            [OUTPUT]
 Loriginal = lattice_mu;
 
 count = 1;
@@ -16,11 +16,11 @@ avg_spin = zeros(1,t);
 tot_energy = zeros(1,t);
 
 for i = 1:t
-    r = 1 + floor(numel(lattice_mu)*rand); % seleccionar paticula a cambiar spin
+    r = 1 + floor(numel(lattice_mu)*rand); % selects the spin to be flipped
     lattice_v = lattice_mu;
     lattice_v(r) = -lattice_v(r);
     dE = energyDif(1,lattice_mu,lattice_v,h);
-    if dE < 0 % estado v tiene menor energia que mu
+    if dE < 0 % v state must have less energy than mu state
         lattice_mu = lattice_v;
     end
     if dE > 0
@@ -33,8 +33,8 @@ for i = 1:t
     
     avg_spin(i) = sum(sum(lattice_mu))/(numel(lattice_mu));
     tot_energy(i) = energy(lattice_mu, h);
-    % Las lineas que siguen permiten hacer una animacion de la evolucion del sistema
-    if mod(i,1000) == 0 % Si queremos que incluya mas pasos tomamos el modulo con respecto a un numero menor
+    % Following lines are intended to produce an animation of the evolution process
+    if mod(i,1000) == 0 
         figure(5)
         imagesc(lattice_mu)
     end
@@ -43,22 +43,21 @@ for i = 1:t
     i
 end
 
-eff = count/t; % calcula la eficiencia, o el numero de cambios que se realizan sobre el numero de pasos totales
+eff = count/t; % efficiency, defined as the number of times a spin flip occurred over the number of time steps
 
-% Realizamos las graficas de la magnetizacion y energia dependiendo del
-% valor asignado a graph
+% Magnetization and Energy graphs
 if graph
     figure(1)
     plot(1:t,tot_energy)
-    title('Energia vs. tiempo')
-    xlabel('tiempo')
+    title('Energy vs. time')
+    xlabel('time')
     ylabel('E(J)')
     
     
     figure(2)
     plot(1:t,avg_spin)
-    title('Magnetizacion del Lattice vs. tiempo')
-    xlabel('tiempo')
+    title('Lattice Magnetization vs. time')
+    xlabel('time')
     ylabel('M')
     
     figure(3)
@@ -67,6 +66,6 @@ if graph
     
     figure(4)
     imagesc(lattice_mu)
-    title('Lattice Final')
+    title('Final Lattice')
 end
 end
