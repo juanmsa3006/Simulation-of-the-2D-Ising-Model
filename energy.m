@@ -1,12 +1,12 @@
 function E = energy(lattice, H)
 % E = energy(lattice, H)
-% lattice : lattice cuya energia queremos calcular                     [INPUT]
-% H       : matriz con los valores del campo magnetico para cada punto [INPUT]
-% E       : escalar, valor de la energia del lattice                   [OUTPUT]
+% lattice : lattice whose energy we want to calculate                       [INPUT]
+% H       : matrix containing the value of the magnetic field at each point [INPUT]
+% E       : scalar, energy of the lattice                                   [OUTPUT]
 
 [n1,n2] = size(lattice);
 E = 0;
-%% Condiciones de Contorno
+%% Boundary Conditions
 for a = 1:n1
     for b = 1:n2
         horBoundary = 0;
@@ -131,7 +131,7 @@ for a = 1:n1
     end
 end
 
-Eh = sum(sum(lattice.*H)); % energia debido al campo magnetico
+Eh = sum(sum(lattice.*H)); % enrgy contribution from the magnetic field
 
 E = -E-Eh;
 
