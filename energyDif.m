@@ -6,7 +6,7 @@ function dE = energyDif(J, lattice, lattice2, H)
 % H        : matrix with the values of the magnetic field at each point    [INPUT]
 % dE       : scalar, energy difference of both lattice configurations      [OUTPUT]
 
-[a,b] = find(lattice ~= lattice2); % Find position of spin flipped
+[a,b] = find(lattice ~= lattice2); % Find position of the flipped spin
 [n1,n2] = size(lattice2); 
 
 %% Boundary Conditions
