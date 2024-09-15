@@ -1,15 +1,15 @@
 function dE = energyDif(J, lattice, lattice2, H)
 % dE = energyDif(J, lattice, lattice2, H)
-% J        : valor de la constante J                                       [INPUT]
-% lattice  : lattice antes del cambio de espin                             [INPUT]
-% lattice2 : lattice luego de cambiar un espin                             [INPUT]
-% H        : matriz con los valores del campo magnetico para cada punto    [INPUT]
-% dE       : escalar, la diferencia de energia entre ambas configuraciones [OUTPUT]
+% J        : value of the J constant                                       [INPUT]
+% lattice  : lattice before spin flip                                      [INPUT]
+% lattice2 : lattice after spin flip                                       [INPUT]
+% H        : matrix with the values of the magnetic field at each point    [INPUT]
+% dE       : scalar, energy difference of both lattice configurations      [OUTPUT]
 
-[a,b] = find(lattice ~= lattice2); % Encontrar la posicion del espin que se ha cambiado
+[a,b] = find(lattice ~= lattice2); % Find position of spin flipped
 [n1,n2] = size(lattice2); 
 
-%% Condiciones de Contorno
+%% Boundary Conditions
 horBoundary = 0;
 verBoundary = 0;
 if a == 1
